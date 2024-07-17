@@ -5,6 +5,8 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.SwingUtilities;
+import servidor.ChatServer;
 
 /**
  *
@@ -24,7 +26,7 @@ public class ChatRoomImpl extends UnicastRemoteObject implements ChatRoom {
         if (clients.size() < capacity) {
             clients.add(client);
             broadcastMessage("Server", username + " has joined the chat.");
-            printOnlineUsers();
+            updateUserList();
         } else {
             client.receiveMessage("Server: Chat room is full.");
         }
@@ -41,7 +43,7 @@ public class ChatRoomImpl extends UnicastRemoteObject implements ChatRoom {
             }
         });
         broadcastMessage("Server", username + " has left the chat.");
-        printOnlineUsers();
+        updateUserList();
     }
 
     @Override
@@ -67,16 +69,12 @@ public class ChatRoomImpl extends UnicastRemoteObject implements ChatRoom {
             client.receiveMessage(sender + ": " + message);
         }
     }
+
+    public List<Cliente> getClients() {
+        return clients;
+    }
     
-    public void printOnlineUsers() {
-        System.out.println("Online users:");
-        for (Cliente client : clients) {
-            try {
-                System.out.println(client.getUsername());
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
-        }
-        System.out.println();
+    private void updateUserList() {
+         SwingUtilities.invokeLater(() -> ChatServer.updateUserList(getClients()));
     }
 }
