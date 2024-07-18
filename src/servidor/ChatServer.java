@@ -39,7 +39,7 @@ public class ChatServer extends javax.swing.JFrame {
             txtLog.append("Servidor Iniciado...\n");
             txtLog.append("Esperando que se conecten clientes...\n");
             lbStatus.setText("Server ONLINE Port: " + PORT);
-            lbStatus.setForeground(Color.BLUE);
+            lbStatus.setForeground(Color.CYAN);
             btnStart.setText("Exit");
             
         } catch (RemoteException e) {
@@ -88,10 +88,13 @@ public class ChatServer extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel2.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel1.setBackground(new java.awt.Color(51, 102, 255));
+
+        jPanel2.setBackground(new java.awt.Color(51, 102, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         btnStart.setBackground(new java.awt.Color(204, 204, 204));
+        btnStart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/start.png"))); // NOI18N
         btnStart.setText("Start");
         btnStart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,7 +103,7 @@ public class ChatServer extends javax.swing.JFrame {
         });
 
         lbStatus.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lbStatus.setForeground(new java.awt.Color(255, 0, 51));
+        lbStatus.setForeground(new java.awt.Color(255, 204, 51));
         lbStatus.setText("Server OFFLINE");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -114,7 +117,7 @@ public class ChatServer extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
                 .addComponent(lbStatus)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnStart)
@@ -131,10 +134,10 @@ public class ChatServer extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel3.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel3.setBackground(new java.awt.Color(51, 102, 255));
 
-        jPanel4.setBackground(new java.awt.Color(153, 153, 153));
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Users"));
+        jPanel4.setBackground(new java.awt.Color(51, 102, 255));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Users Online"));
 
         txtUsers.setEditable(false);
         txtUsers.setColumns(5);
@@ -159,11 +162,12 @@ public class ChatServer extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel5.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel5.setBackground(new java.awt.Color(51, 102, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Log"));
 
         txtLog.setEditable(false);
         txtLog.setColumns(20);
+        txtLog.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         txtLog.setRows(5);
         jScrollPane2.setViewportView(txtLog);
 
@@ -173,7 +177,7 @@ public class ChatServer extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(

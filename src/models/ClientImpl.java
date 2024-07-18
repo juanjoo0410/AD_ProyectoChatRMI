@@ -1,8 +1,10 @@
 package models;
+import cliente.ChatClient;
 import interfaces.*;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -12,6 +14,7 @@ public class ClientImpl extends UnicastRemoteObject implements Cliente{
 
     private String username;
     private ChatRoom chatRoom;
+    private ChatClient app;
 
     public ClientImpl(String username, ChatRoom chatRoom) throws RemoteException {
         this.username = username;
@@ -20,7 +23,11 @@ public class ClientImpl extends UnicastRemoteObject implements Cliente{
 
     @Override
     public void receiveMessage(String message) throws RemoteException {
-        System.out.println(message);
+        if (app != null) {
+            SwingUtilities.invokeLater(() -> {
+                app.addChat(message);
+            });
+        }
     }
 
     @Override
@@ -34,5 +41,9 @@ public class ClientImpl extends UnicastRemoteObject implements Cliente{
 
     public void logout() throws RemoteException {
         chatRoom.logout(username);
+    }
+
+    public void setApp(ChatClient app) {
+        this.app = app;
     }
 }

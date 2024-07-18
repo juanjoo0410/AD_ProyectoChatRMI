@@ -25,7 +25,7 @@ public class ChatRoomImpl extends UnicastRemoteObject implements ChatRoom {
     public void login(String username, Cliente client) throws RemoteException {
         if (clients.size() < capacity) {
             clients.add(client);
-            broadcastMessage("Server", username + " has joined the chat.");
+            broadcastMessage("Server", username + " ha iniciado sesión.");
             updateUserList();
         } else {
             client.receiveMessage("Server: Chat room is full.");
@@ -42,7 +42,7 @@ public class ChatRoomImpl extends UnicastRemoteObject implements ChatRoom {
                 return false;
             }
         });
-        broadcastMessage("Server", username + " has left the chat.");
+        broadcastMessage("Server", username + " ha cerrado sesión.");
         updateUserList();
     }
 
